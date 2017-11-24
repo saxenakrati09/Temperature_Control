@@ -1,0 +1,55 @@
+int i;
+float temp;
+void setup()
+{ 
+	pinMode(A0,INPUT);
+  	for(i=3;i<=7;i++)
+  	{ 
+		pinMode(i,OUTPUT);
+  	}
+}
+
+void loop()
+{
+ 	temp=(5.0*analogRead(A0)*100.0)/1024;
+  	if(temp<17.0)     //Buzzer
+  	{ 
+		pinMode(7,HIGH);
+    		pinMode(3,LOW);
+    		pinMode(4,LOW);
+    		pinMode(5,LOW);
+    		pinMode(6,LOW);
+  	}
+  	else if(temp<27.0)     //Normal
+  	{ 
+		pinMode(6,HIGH);
+    		pinMode(3,LOW);
+    		pinMode(4,LOW);
+    		pinMode(5,LOW);
+    		pinMode(7,LOW);
+  	}
+  	else if(temp<33.0)    //Fan
+  	{ 
+		pinMode(5,HIGH);
+    		pinMode(3,LOW);
+    		pinMode(4,LOW);
+    		pinMode(7,LOW);
+    		pinMode(6,LOW);
+  	}
+  	else if(temp<37.0)      //AC
+  	{ 
+		pinMode(4,HIGH);
+    		pinMode(3,LOW);
+    		pinMode(7,LOW);
+    		pinMode(5,LOW);
+    		pinMode(6,LOW);
+  	}
+  	else if(temp>37.0)     //Danger
+  	{ 
+		pinMode(3,HIGH);
+    		pinMode(7,LOW);
+    		pinMode(4,LOW);
+    		pinMode(5,LOW);
+    		pinMode(6,LOW);
+  	}
+}
